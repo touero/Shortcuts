@@ -1,10 +1,11 @@
 import Foundation
 
 let currentDir = FileManager.default.currentDirectoryPath
-let readmePath = currentDir + "/README.md"
+let readmeURL = URL(fileURLWithPath: currentDir).appendingPathComponent("README.md")
+
 
 do {
-    var fileContents = try String(contentsOfFile: readmePath, encoding: .utf8)
+    let fileContents = try String(contentsOf: readmeURL, encoding: .utf8)
     print("\(fileContents)\n")
 } catch {
     print("读取文件失败: \(error)")
