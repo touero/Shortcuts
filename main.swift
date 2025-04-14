@@ -23,15 +23,18 @@ struct LineWritten {
 
     func writeFile() {
         let line = "| [\(name)](\(installUrl)) | \(description) | \(dependency) | \(isAddAuto) |\n"
-        if let fileHandle = try? FileHandle(forWritingTo: readmeURL) {
+        do {
+            let fileHandle = try FileHandle(forWritingTo: readmeURL)
             fileHandle.seekToEndOfFile()
-            if let data = line.data(using: .utf8){
-                fileHandle.write(data)
+            guard let data = line.data(using: .utf8) else {
+                print("Failed to encode the line into data.")
+                exit(0)
             }
+            fileHandle.write(data)
             fileHandle.closeFile()
             print("write to README.md success, you can continue or exit")
-        } else {
-            print("write to README.md fail, will exit")
+        } catch {
+            print("write to README.md failed with error: \(error)")
             exit(0)
         }
     }
