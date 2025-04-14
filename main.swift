@@ -9,7 +9,7 @@ do {
     print("\(fileContents)\n")
 } catch {
     print("读取文件失败: \(error)")
-    exit(0)
+    exit(1)
 }
 
 print("输入表格数据, 每次按提示输入, 按顺序输入以下内容: 1.输入名称, 2. 安装链接, 3. 描述, 4. 依赖, 5. 是否需要添加到自动化, 输入 'exit' 或者 'quit' 退出程序.\n")
