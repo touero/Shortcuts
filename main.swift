@@ -23,7 +23,7 @@ struct LineWritten {
 
     func writeFile() {
         let line = "| [\(name)](\(installUrl)) | \(description) | \(dependency) | \(isAddAuto) |\n"
-        if let fileHandle = try? FileHandle(forWritingTo: URL(fileURLWithPath: readmePath)) {
+        if let fileHandle = try? FileHandle(forWritingTo: readmeURL) {
             fileHandle.seekToEndOfFile()
             if let data = line.data(using: .utf8){
                 fileHandle.write(data)
